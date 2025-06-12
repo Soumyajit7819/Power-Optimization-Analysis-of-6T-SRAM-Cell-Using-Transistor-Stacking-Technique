@@ -1,5 +1,5 @@
-# Power Optimization Analysis of 6T SRAM Cell Using Transistor Stacking Technique
-## Using Cadence Virtuoso
+# Low Power Optimization Analysis of 6T SRAM Cell Using Transistor Stacking Technique
+## Using Cadence Virtuoso on 180nm Technology
 
 > [!NOTE]
 > **Abstract**-Efficient power utilization is a paramount concern in the VLSI industry, particularly with the increasing density of memory systems. The SRAM cell stands as a cornerstone component in various memory devices, including cache memories and CPU registers. However, the power consumption escalation is largely attributed to transistor leakage current. Hence, there arises a critical necessity to curtail power consumption in each memory cell. This project undertakes a meticulous examination of power optimization in the 6T SRAM cell through the application of the transistor stacking technique. This technique entails the use of two half-size transistors instead of a single full-size transistor, interconnected in series and maintained in an off state. This configuration effectively mitigates leakage current, consequently diminishing the power consumption of the SRAM cell. The project encompasses a comprehensive power consumption analysis of 6T SRAM cells, both with and without the stacking technique, conducted at varying voltages using the Cadence Virtuoso tool.
@@ -33,6 +33,8 @@ The 6T SRAM cell operates as a bistable latch, storing a single bit of data (0 o
 
 ## Transistor stacking in 6T SRAM cell
 
+![Image](SRAM_LowPower/Images/stacking.png)
+
 Transistor stacking for low-power design in a 6T SRAM cell can be implemented by using multiple smaller transistors in series for each access or pull-up/pull-down function. Here's how it can be applied to different parts of a 6T SRAM cell:
 
 1. **Access Transistor Stacking**: In a 6T SRAM cell, access transistors connect the storage nodes to the bitlines during read and write operations. By stacking multiple smaller transistors in series for each access transistor, the overall leakage current can be reduced while maintaining the desired drive strength.
@@ -44,5 +46,69 @@ Overall, transistor stacking in a 6T SRAM cell involves using multiple smaller t
 In this project we used transistor stacking at the pull-up and pull-down network to  reduce the static power dissipation due to various leakage currents. The fig.2.4 shows the 6T SRAM with stacking effect of the transistors. The M3, M4, M5, M6, M9, M10 are the 6T SRAM cell. Stacking to the transistors M7 and M8 are applied as NMOS pull down transistors. Stacking to the transistors M1 and M2 are applied as PMOS pull up transistors.
 
 During the cell not active state, the input point with the value zero attached to ground to the both transistors are connected series that are turned off. Due to the stacking the leakage current decreases. Due to stacking, leakage current passing by the way of the turned off transistors in PMOS pull up path decreased. The node having the value high it gets charged by large resistance that decreases present current and consumption of power.
+
+
+# Cadence Virtuoso Simulation
+
+## 6T SRAM
+
+### Schematic 
+
+#### 1. Read
+![Image](SRAM_LowPower/Images/6tReadSchematic.png)
+
+![Image](SRAM_LowPower/Images/6tReadTransientResults.png)
+
+#### 2. write
+   
+![Image](SRAM_LowPower/Images/6tWriteSchematic.png)
+
+![Image](SRAM_LowPower/Images/6tWriteTransientResults.png)
+
+#### 3. Butterfly graph
+
+![Image](SRAM_LowPower/Images/6tButterfly.png)
+
+#### 4. Power Dissipation
+
+![Image](SRAM_LowPower/Images/6tPower.png)
+
+## 6T SRAM With Transistor Stacking 
+
+### Schematic 
+
+![Image](SRAM_LowPower/Images/TSschematic.png)
+
+#### 1. Read
+
+![Image](SRAM_LowPower/Images/TSReadTransientResults.png)
+
+#### 2. write
+
+![Image](SRAM_LowPower/Images/TSWriteTransientResults.png)
+
+#### 3. Butterfly graph
+
+![Image](SRAM_LowPower/Images/TSButterfly.png)
+
+#### 4. Power Dissipation
+
+![Image](SRAM_LowPower/Images/TSPower.png)
+
+
+## Layout
+
+![Image](SRAM_LowPower/Images/Layout.png)
+
+## Conclusion
+
+Using these techniques we observed significant reduction in power around 40%
+
+### Notable References
+
+1. K.L.V Ramana Kumari, M. Asha Rani, N. Balaji, S. Kotha, and Murali Mohan Kota, “Power Optimization Analysis of Different Sram Cells Using Transistor Stacking Technique,” 2021 IEEE 8th Uttar Pradesh Section International Conference on Electrical, Electronics and Computer Engineering (UPCON), Nov. 2021, doi: https://doi.org/10.1109/upcon52273.2021.9667583.
+2. T. Venkata Lakshmi and M. Kamaraju, “Implementation of High Performance 6T-SRAM Cell,” Journal of physics. Conference series, vol. 1804, no. 1, pp. 012185–012185, Feb. 2021, doi: https://doi.org/10.1088/1742-6596/1804/1/012185.
+3. G. Apostolidis, D. Balobas, and N. Konofaos, “Design and Simulation of 6T SRAM Cell Architectures in 32nm Technology,” Journal of Engineering Science and Technology Review, vol. 9, no. 5, pp. 145–149, 2016, Accessed: Apr. 25, 2024. [Online]. Available: http://www.jestr.org/downloads/Volume9Issue5/fulltext23952016.pdf
+
 
 
